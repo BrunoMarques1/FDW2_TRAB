@@ -1,3 +1,14 @@
+<h1>Adicionar item</h1>
+<p>msg:</p>
+<input type="text" [(ngModel)]="item.msg">
+<p>valor:</p>
+<input type="text" [(ngModel)]="item.valor">
+<br><br>
+<button (click)="inserir()">Inserir</button>
+
+<h1>Itens:</h1>
 <div *ngFor="let item of itens">
-    <p>{{item.msg}}</p>
+    <p>{{item.id}} | {{item.msg}} | {{item.valor}} 
+        <button (click)="deletar(item.id)">Deletar</button>
+    </p>
 </div>

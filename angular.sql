@@ -1,0 +1,13 @@
+CREATE DATABASE angular;
+USE angular;
+
+CREATE TABLE teste (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  msg VARCHAR(100) NOT NULL,
+  valor VARCHAR(255) NOT NULL
+);
+
+INSERT INTO teste (msg,valor)
+VALUES('MSG2','Valor2');
+DELETE FROM teste WHERE id > 3;
+SELECT * FROM teste;

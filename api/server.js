@@ -22,8 +22,21 @@ app.use(express.json())
 app.get('/', async (req, res) => {
     const info = await knex('teste')
     res.send(info)
-    console.log(info)
 })
+
+app.post('/', async (req,res) =>{
+    const {msg,valor} = req.body
+    knex('teste').insert({msg: msg, valor: valor}).then((dados =>{
+        res.send({dados:dados[0],msg: msg, valor: valor})
+    }))
+})
+
+app.delete('/:id', async (req, res) => {
+    const { id } = req.params;
+    await knex('teste').where('id', id).del();
+    res.send({ msg: 'Item deletado com sucesso!' });
+  });
+  
 
 
 
