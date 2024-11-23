@@ -8,7 +8,7 @@ const knex = require("knex")({
         host: "localhost",
         user: "root",
         password: "",
-        database: "angular"
+        database: "controle_colecao"
     }
 })
 
@@ -20,14 +20,21 @@ app.use(express.json())
 
 
 app.get('/', async (req, res) => {
-    const info = await knex('teste')
+    const info = await knex('pastas')
     res.send(info)
 })
 
+app.get('/:id', async (req, res) => {
+    const id = req.params.id
+    const info = await knex('itens').where({pasta_id: id})
+    res.send(info)
+    //console.log(info)
+})
+
 app.post('/', async (req,res) =>{
-    const {msg,valor} = req.body
-    knex('teste').insert({msg: msg, valor: valor}).then((dados =>{
-        res.send({dados:dados[0],msg: msg, valor: valor})
+    const {nome,descricao} = req.body
+    knex('pastas').insert({nome: nome, descricao: descricao}).then((dados =>{
+        res.send({msg:'Cadastro de pasta realizado!'})
     }))
 })
 

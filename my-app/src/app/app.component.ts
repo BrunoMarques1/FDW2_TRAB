@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ListarItensComponent } from './componentes/listar-itens/listar-itens.component'
+
 
 @Component({
   selector: 'app-root',

@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Pasta } from '../classes/pasta';
 import { Item } from '../classes/item';
+
 
 const BASE_API = "http://localhost:3030/";
 const httpOptions = {
@@ -18,12 +20,16 @@ export class ApiServiceService {
 
   constructor(private http: HttpClient) {}
   
-  listar(): Observable<Item[]>{
-    return this.http.get<Item[]>(BASE_API)
+  listarPastas(): Observable<Pasta[]>{
+    return this.http.get<Pasta[]>(BASE_API)
   }
 
-  inserir(item: Item): Observable<Item> {
-    return this.http.post(BASE_API, item, httpOptions)
+  listarItens(idPasta?: number): Observable<Item[]>{
+    return this.http.get<Item[]>(`${BASE_API}${idPasta}`,httpOptions)
+  }
+
+  inserir(pasta: Pasta): Observable<Pasta> {
+    return this.http.post(BASE_API, pasta, httpOptions)
   }
 
   deletar(id?: number): Observable<any> {

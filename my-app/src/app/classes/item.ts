@@ -1,5 +1,10 @@
 export class Item {
     id?: number
-    msg?: string
-    valor?: string
+    pasta_id?: number
+    nome?: string
+    descricao?: string
+    categoria?: string
+    ano_aquisiscao?: number
+    quantidade?: number
+    data_adicionado?: Date
 }
