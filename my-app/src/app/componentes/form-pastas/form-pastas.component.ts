@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, input } from '@angular/core'
 import { ApiServiceService } from '../../services/api-service.service'
 import { Pasta } from '../../classes/pasta'
 

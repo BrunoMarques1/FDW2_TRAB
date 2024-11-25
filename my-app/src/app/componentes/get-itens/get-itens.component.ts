@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ApiServiceService } from '../../services/api-service.service';
 import { Item } from '../../classes/item';
+import { ActivatedRoute, Router } from '@angular/router';
+
 
 
 @Component({
@@ -10,13 +12,18 @@ import { Item } from '../../classes/item';
 })
 export class GetItensComponent {
   itens: Item[] = []
+  idPasta?:number
 
-  constructor(private apiServiceService:ApiServiceService){
-    this.listarItens()
+  constructor(
+    private apiServiceService:ApiServiceService,
+    private route: ActivatedRoute,
+  ) {
+    this.idPasta = this.route.snapshot.params['id']
+    this.listarItens(this.idPasta)
   }
 
-  listarItens(){
-    this.apiServiceService.listarItens(12).subscribe(
+  listarItens(id?:number){
+    this.apiServiceService.listarItens(id).subscribe(
       (i) => {
         this.itens = i
       }

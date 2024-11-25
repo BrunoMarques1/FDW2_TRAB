@@ -6,15 +6,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideHttpClient } from '@angular/common/http';
 import { FormPastasComponent } from './componentes/form-pastas/form-pastas.component';
-import { GetPastasItensComponent } from './componentes/get-pastas-itens/get-pastas-itens.component';
 import { GetItensComponent } from './componentes/get-itens/get-itens.component';
+import { GetPastasComponent } from './componentes/get-pastas/get-pastas.component';
+import { PesquisaPastasPipe } from './pipes/pesquisa-pastas.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     FormPastasComponent,
-    GetPastasItensComponent,
     GetItensComponent,
+    GetPastasComponent,
+    PesquisaPastasPipe,
   ],
   imports: [
     BrowserModule,
