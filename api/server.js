@@ -38,6 +38,23 @@ app.post('/', async (req,res) =>{
     }))
 })
 
+app.post('/putPasta/:id', async (req,res) =>{
+    const id = req.params.id
+
+    const {nome,descricao} = req.body
+    knex('pastas').insert({nome: nome, descricao: descricao}).then((dados =>{
+        res.send({msg:'Cadastro de pasta realizado!'})
+    }))
+})
+
+app.put('/putPasta/:id', async (req, res) => {
+    const { id } = req.params;
+    const {nome,descricao} = req.body
+    await knex('pastas').where('id', id).update({nome: nome, descricao: descricao});
+    res.send({ msg: 'Pasta modificada com sucesso!' });
+  });
+
+
 app.delete('/:id', async (req, res) => {
     const { id } = req.params;
     await knex('teste').where('id', id).del();

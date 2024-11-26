@@ -29,6 +29,10 @@ export class GetPastasComponent {
     )
   }
 
+  editarPasta(id?:number){
+    this.router.navigate([`/putPasta/${id}`])    
+  }
+
   abrirPasta(id?:number){
     this.router.navigate([`/getItens/${id}`])
   }

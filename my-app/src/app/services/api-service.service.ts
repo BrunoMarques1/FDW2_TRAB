@@ -32,8 +32,13 @@ export class ApiServiceService {
     return this.http.post(BASE_API, pasta, httpOptions)
   }
 
+  editarPasta(idPasta?:number, pasta?:Pasta): Observable<Pasta>{
+    const url = `${BASE_API}putPasta/${idPasta}`
+    return this.http.put<Pasta>(url,pasta,httpOptions)
+  }
+
   deletar(id?: number): Observable<any> {
-    return this.http.delete(`${BASE_API}${id}`, httpOptions);  // Passando o id na URL
+    return this.http.delete(`${BASE_API}${id}`, httpOptions);  
   }
   
 }

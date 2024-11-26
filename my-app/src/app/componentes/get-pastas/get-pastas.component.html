@@ -3,12 +3,15 @@
 <input [(ngModel)]="pastaPesquisada" class="form-control me-2" type="text" placeholder="Search">
 
 
-<div class="row">
+<div class="row justify-content-center gap-3">
     <div class="card col-12 col-sm-6 col-md-4 col-lg-4 col-xl-2 col-xxl-2" *ngFor="let pasta of pastas | pesquisaPastas:pastaPesquisada">
-        <img class="card-img-top"  src="perfil.png" alt="Card Image">
+        <img class="card-img-top d-flex align-items-stretch"  src="perfil.png" alt="Card Image">
         <div class="card-body">
-            <h4 class="card-title">{{pasta.id}} | {{pasta.nome}} | {{pasta.descricao}}</h4>
-            <button class="btn btn-primary" (click)="abrirPasta(pasta.id)">Abrir Pasta</button>
+            <h4 class="card-title text-center">{{pasta.nome}}</h4>
+            <div class="d-flex justify-content-center gap-2">
+                <button class="btn btn-primary" (click)="abrirPasta(pasta.id)">Abrir Pasta</button>
+                <button class="btn btn-primary" (click)="editarPasta(pasta.id)">Editar Pasta</button>
+            </div>
         </div>
     </div>
 </div>
