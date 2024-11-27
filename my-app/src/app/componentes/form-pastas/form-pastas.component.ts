@@ -1,6 +1,7 @@
 import { Component, input } from '@angular/core'
 import { ApiServiceService } from '../../services/api-service.service'
 import { Pasta } from '../../classes/pasta'
+import { ActivatedRoute, Router } from '@angular/router'
 
 @Component({
   selector: 'app-form-pastas',
@@ -8,21 +9,50 @@ import { Pasta } from '../../classes/pasta'
   styleUrl: './form-pastas.component.css'
 })
 export class FormPastasComponent {
-  pastas : Pasta[] = []
   pasta = new Pasta()
+  id?: number
 
-  constructor(private apiServiceService:ApiServiceService){}
-
-  inserir() {
-    this.apiServiceService.inserir(this.pasta).subscribe(
-      (novaPasta) => {
-        alert('pasta inserido com sucesso!')
-        this.pasta = new Pasta()
+  constructor(
+    private apiServiceService:ApiServiceService,
+    private router:Router,
+    private route: ActivatedRoute
+    ){
+      this.id = this.route.snapshot.params['id'];
+      if(this.id){
+        this.apiServiceService.getPastaID(this.id).subscribe(
+          (pasta) => {
+            this.pasta = pasta
+          }
+        )
       }
-    )
-  }
+    }
 
+  salvar() {
+    if(this.id){
+      this.apiServiceService.editarPasta(this.id,this.pasta).subscribe(
+        (i)=>{
+          console.log(i)
+          alert('Pasta modificada com sucesso')
+        }
+      )
+    }else{
+      this.apiServiceService.inserir(this.pasta).subscribe(
+        (novaPasta) => {
+          alert('pasta inserido com sucesso!')
+          this.pasta = new Pasta()
+        }
+      )
+    }
+
+
+
+    
+  }
 }
+
+  
+
+
 
 
 

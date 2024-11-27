@@ -30,7 +30,7 @@ export class GetPastasComponent {
   }
 
   editarPasta(id?:number){
-    this.router.navigate([`/putPasta/${id}`])    
+    this.router.navigate([`/formPasta/${id}`])    
   }
 
   abrirPasta(id?:number){

@@ -24,11 +24,17 @@ app.get('/', async (req, res) => {
     res.send(info)
 })
 
-app.get('/:id', async (req, res) => {
+app.get('/itens/:id', async (req, res) => {
     const id = req.params.id
     const info = await knex('itens').where({pasta_id: id})
-    res.send(info)
+    res.send({msg: 'info'})
     //console.log(info)
+})
+
+app.get('/pastas/:id', async (req, res) => {
+    const id = req.params.id
+    const info = await knex('pastas').where({id: id}).first()
+    res.send(info)
 })
 
 app.post('/', async (req,res) =>{

@@ -23,6 +23,11 @@ export class ApiServiceService {
   listarPastas(): Observable<Pasta[]>{
     return this.http.get<Pasta[]>(BASE_API)
   }
+  
+  getPastaID(id?:number): Observable<Pasta>{
+    const url = `${BASE_API}pastas/${id}`;
+    return this.http.get<Pasta>(url,httpOptions)
+  }
 
   listarItens(idPasta?: number): Observable<Item[]>{
     return this.http.get<Item[]>(`${BASE_API}${idPasta}`,httpOptions)
