@@ -27,7 +27,7 @@ app.get('/', async (req, res) => {
 app.get('/itens/:id', async (req, res) => {
     const id = req.params.id
     const info = await knex('itens').where({pasta_id: id})
-    res.send({msg: 'info'})
+    res.send(info)
     //console.log(info)
 })
 
@@ -46,7 +46,6 @@ app.post('/', async (req,res) =>{
 
 app.post('/putPasta/:id', async (req,res) =>{
     const id = req.params.id
-
     const {nome,descricao} = req.body
     knex('pastas').insert({nome: nome, descricao: descricao}).then((dados =>{
         res.send({msg:'Cadastro de pasta realizado!'})
@@ -59,7 +58,6 @@ app.put('/putPasta/:id', async (req, res) => {
     await knex('pastas').where('id', id).update({nome: nome, descricao: descricao});
     res.send({ msg: 'Pasta modificada com sucesso!' });
   });
-
 
 app.delete('/:id', async (req, res) => {
     const { id } = req.params;

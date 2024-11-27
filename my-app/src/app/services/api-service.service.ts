@@ -30,7 +30,7 @@ export class ApiServiceService {
   }
 
   listarItens(idPasta?: number): Observable<Item[]>{
-    return this.http.get<Item[]>(`${BASE_API}${idPasta}`,httpOptions)
+    return this.http.get<Item[]>(`${BASE_API}itens/${idPasta}`,httpOptions)
   }
 
   inserir(pasta: Pasta): Observable<Pasta> {
