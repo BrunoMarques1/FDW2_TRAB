@@ -19,7 +19,7 @@ export class FormPastasComponent {
     ){
       this.id = this.route.snapshot.params['id'];
       if(this.id){
-        this.apiServiceService.getPastaID(this.id).subscribe(
+        this.apiServiceService.getPastaByID(this.id).subscribe(
           (pasta) => {
             this.pasta = pasta
           }
@@ -36,7 +36,7 @@ export class FormPastasComponent {
         }
       )
     }else{
-      this.apiServiceService.inserir(this.pasta).subscribe(
+      this.apiServiceService.postPasta(this.pasta).subscribe(
         (novaPasta) => {
           alert('pasta inserido com sucesso!')
           this.pasta = new Pasta()

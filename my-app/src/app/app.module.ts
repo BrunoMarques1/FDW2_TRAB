@@ -10,6 +10,7 @@ import { GetItensComponent } from './componentes/get-itens/get-itens.component';
 import { GetPastasComponent } from './componentes/get-pastas/get-pastas.component';
 import { PesquisaPastasPipe } from './pipes/pesquisa-pastas.pipe';
 import { FormItensComponent } from './componentes/form-itens/form-itens.component';
+import { PesquisaItensPipe } from './pipes/pesquisa-itens.pipe';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { FormItensComponent } from './componentes/form-itens/form-itens.componen
     GetPastasComponent,
     PesquisaPastasPipe,
     FormItensComponent,
+    PesquisaItensPipe,
   ],
   imports: [
     BrowserModule,

@@ -22,7 +22,7 @@ export class GetPastasComponent {
   }
 
   listar(){
-    this.apiServiceService.listarPastas().subscribe(
+    this.apiServiceService.getPastas().subscribe(
       (i) => {
         this.pastas = i
       }
@@ -33,8 +33,21 @@ export class GetPastasComponent {
     this.router.navigate([`/formPasta/${id}`])    
   }
 
+  cadastrarPasta(){
+    this.router.navigate([`/formPasta/`])    
+  }
+
   abrirPasta(id?:number){
     this.router.navigate([`/getItens/${id}`])
+  }
+
+  deletarPasta(id?:number){
+    this.apiServiceService.deletarPasta(id).subscribe(
+      (i) => {
+        alert("Pasta deletada!")
+        this.listar()
+      }
+    )
   }
 
 }

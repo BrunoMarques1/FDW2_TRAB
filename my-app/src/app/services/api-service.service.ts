@@ -20,30 +20,57 @@ export class ApiServiceService {
 
   constructor(private http: HttpClient) {}
   
-  listarPastas(): Observable<Pasta[]>{
-    return this.http.get<Pasta[]>(BASE_API)
+  getPastas(): Observable<Pasta[]>{
+    const url = `${BASE_API}getPastas`
+    return this.http.get<Pasta[]>(url)
   }
-  
-  getPastaID(id?:number): Observable<Pasta>{
-    const url = `${BASE_API}pastas/${id}`;
+  getPastaByID(id?:number): Observable<Pasta>{
+    const url = `${BASE_API}getPasta/${id}`;
     return this.http.get<Pasta>(url,httpOptions)
   }
 
-  listarItens(idPasta?: number): Observable<Item[]>{
-    return this.http.get<Item[]>(`${BASE_API}itens/${idPasta}`,httpOptions)
+  getItensByPastaID(idPasta?: number): Observable<Item[]>{
+    const url = `${BASE_API}getItensByPasta/${idPasta}`
+    return this.http.get<Item[]>(url,httpOptions)
+  }
+  getItemByID(item_id?:number): Observable<Item>{
+    const url = `${BASE_API}getItem/${item_id}`;
+    return this.http.get<Item>(url,httpOptions)
+  }
+  getItens(id?: number): Observable<Pasta[]>{
+    const url = `${BASE_API}getItens`
+    return this.http.get<Pasta[]>(url)
   }
 
-  inserir(pasta: Pasta): Observable<Pasta> {
-    return this.http.post(BASE_API, pasta, httpOptions)
+  
+
+  postPasta(pasta: Pasta): Observable<Pasta> {
+    const url = `${BASE_API}postPasta`
+    return this.http.post(url,pasta,httpOptions)
   }
+  postItem(item: Item): Observable<Item> {
+    const url = `${BASE_API}postItem`
+    return this.http.post(url,item,httpOptions)
+  }
+
+
 
   editarPasta(idPasta?:number, pasta?:Pasta): Observable<Pasta>{
     const url = `${BASE_API}putPasta/${idPasta}`
     return this.http.put<Pasta>(url,pasta,httpOptions)
   }
+  editarItem(idItem?:number, item?:Item): Observable<Item>{
+    const url = `${BASE_API}putItem/${idItem}`
+    return this.http.put<Item>(url,item,httpOptions)
+  }
 
-  deletar(id?: number): Observable<any> {
-    return this.http.delete(`${BASE_API}${id}`, httpOptions);  
+  deletarPasta(id?: number): Observable<Pasta> {
+    const url = `${BASE_API}pasta/${id}`
+    return this.http.delete(url, httpOptions);  
+  }
+  deletarItem(id?: number): Observable<Item> {
+    const url = `${BASE_API}item/${id}`
+    return this.http.delete(url, httpOptions);  
   }
   
 }

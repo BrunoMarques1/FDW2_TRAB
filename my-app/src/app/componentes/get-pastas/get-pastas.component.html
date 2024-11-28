@@ -1,5 +1,7 @@
 <h1>PASTAS:</h1>
-
+<button (click)="cadastrarPasta()" class="btn btn-success btn-sm">
+    Cadastrar nova pasta
+</button>
 <input [(ngModel)]="pastaPesquisada" class="form-control me-2" type="text" placeholder="Search">
 
 
@@ -11,6 +13,7 @@
             <div class="d-flex justify-content-center gap-2">
                 <button class="btn btn-primary" (click)="abrirPasta(pasta.id)">Abrir Pasta</button>
                 <button class="btn btn-primary" (click)="editarPasta(pasta.id)">Editar Pasta</button>
+                <button class="btn btn-primary" (click)="deletarPasta(pasta.id)">Deletar Pasta</button>
             </div>
         </div>
     </div>

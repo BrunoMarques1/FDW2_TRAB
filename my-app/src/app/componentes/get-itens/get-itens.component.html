@@ -1,6 +1,39 @@
 <h1>Itens:</h1>
-<div *ngFor="let item of itens">
-    <p>{{item.id}} | {{item.nome}} | {{item.descricao}} 
-        <button>Deletar</button>
-    </p>
-</div>
+<button (click)="cadastrarItem()" class="btn btn-success btn-sm">
+    cadastrar novo item
+</button>
+<input [(ngModel)]="itemPesquisado" class="form-control me-2" type="text" placeholder="Search">
+
+<table class="table table-striped table-hover">
+  <thead class="table-dark">
+    <tr>
+      <th>#</th>
+      <th>Nome</th>
+      <th>Descrição</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let item of itens | pesquisaItens:itemPesquisado; let i = index" (click)="toggleExpand(i)">
+    <tr >
+      <td>{{ i + 1 }}</td>
+      <td>{{ item.nome }}</td>
+      <td>{{ item.descricao }}</td>
+      <td>
+        <button class="btn btn-danger btn-sm" (click)="deletarItem(item.id)">
+          Deletar
+        </button>
+        <button class="btn btn-primary btn-sm" (click)="editarItem(item.id)">
+          Modificar
+        </button>
+      </td>
+    </tr>
+    <tr *ngIf="expandedIndex === i" class="bg-light">
+      <td colspan="4">
+        <strong>Mais Informações:</strong>
+        <p>ID: {{ item.id }}</p>
+        <p>Categoria: {{ item.categoria }}</p>
+        <p>Data de Criação: {{ item.data_adicionado }}</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
